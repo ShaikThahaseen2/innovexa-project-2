@@ -1,0 +1,277 @@
+/* app.css - Premium visual styling for Innovexa Catalyst */
+
+:root {
+    --brand-gradient: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #6d28d9 100%);
+    --success-gradient: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+    --dark-gradient: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+}
+
+body {
+    background: var(--dark-gradient);
+    background-attachment: fixed;
+}
+
+/* Custom fonts styling override */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+    background: rgba(30, 41, 59, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.glass-panel-hover:hover {
+    background: rgba(30, 41, 59, 0.75);
+    border-color: rgba(139, 92, 246, 0.2);
+    transform: translateY(-2px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-heavy {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-input {
+    background: rgba(15, 23, 42, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #f1f5f9 !important;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s ease-in-out;
+}
+
+.glass-input:focus {
+    border-color: rgba(139, 92, 246, 0.5) !important;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25) !important;
+    outline: none;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #020617;
+}
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #8b5cf6;
+}
+
+/* Gradient effects */
+.text-gradient-brand {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient-brand {
+    background: var(--brand-gradient);
+}
+
+.bg-gradient-success {
+    background: var(--success-gradient);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Card hover glow */
+.card-glow {
+    position: relative;
+}
+.card-glow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+.card-glow:hover::after {
+    background: linear-gradient(to bottom, rgba(139, 92, 246, 0.4), rgba(139, 92, 246, 0.05));
+}
+
+/* Toast Notifications Container */
+#toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+    max-width: 380px;
+    width: calc(100% - 48px);
+}
+
+.toast-notification {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    padding: 16px;
+    border-radius: 12px;
+    color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateX(120%);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+}
+
+.toast-notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toast-notification.success {
+    border-left: 4px solid #10b981;
+}
+
+.toast-notification.error {
+    border-left: 4px solid #ef4444;
+}
+
+.toast-notification.info {
+    border-left: 4px solid #3b82f6;
+}
+
+.toast-notification.warning {
+    border-left: 4px solid #f59e0b;
+}
+
+/* Star Rating Component */
+.star-rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    gap: 4px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2rem;
+    color: #334155;
+    cursor: pointer;
+    transition: color 0.15s ease-in-out;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: #fbbf24;
+}
+
+/* Skill Tags & Inputs */
+.skill-chip {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(139, 92, 246, 0.15);
+    color: #c084fc;
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 0.825rem;
+    font-weight: 500;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.skill-chip:hover {
+    background: rgba(139, 92, 246, 0.25);
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+.skill-chip button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: currentColor;
+    opacity: 0.6;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.skill-chip button:hover {
+    opacity: 1;
+}
+
+/* Loading Skeletons */
+.skeleton {
+    background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+    background-size: 200% 100%;
+    animation: loading-pulse 1.5s infinite;
+}
+
+@keyframes loading-pulse {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Custom Modal styling */
+.custom-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 17, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.custom-modal-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.custom-modal {
+    transform: scale(0.9);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-modal-backdrop.show .custom-modal {
+    transform: scale(1);
+}
